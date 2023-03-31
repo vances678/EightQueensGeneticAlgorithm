@@ -27,7 +27,7 @@ public class EightQueensGA {
    /** the number of gene mutations to perform on each generation's children */
    public static final int MUTATE_COUNT = 1;
 
-   /** the percentage at which the simulation should pause */
+   /** the percentage increment at which the simulation should pause */
    public static final int PAUSE_PERCENT = 10;
 
    /** an array of chromosomes representing the total population */
@@ -49,7 +49,7 @@ public class EightQueensGA {
       for (int i = 0; i < num_chroms; i++) {
          int[] initialGenes = new int[BOARD_SIZE];
          for (int j = 0; j < BOARD_SIZE; j++) {
-            initialGenes[j] = random.nextInt(8);
+            initialGenes[j] = random.nextInt(BOARD_SIZE);
          }
          myChroms[i] = new EightQueensChrom(initialGenes);
       }
@@ -170,7 +170,11 @@ public class EightQueensGA {
     * @return the child chromosome
     */
    EightQueensChrom crossWithTwoPoints(EightQueensChrom firstParent, EightQueensChrom secondParent) {
-      int[] initGenes = new int[] { -1, -1, -1, -1, -1, -1, -1, -1 };
+      int[] initGenes = new int[BOARD_SIZE];
+      for (int i = 0; i < BOARD_SIZE; i++) {
+         initGenes[i] = -1;
+      }
+
       EightQueensChrom child = new EightQueensChrom(initGenes);
 
       int firstCutIndex = random.nextInt(BOARD_SIZE);
