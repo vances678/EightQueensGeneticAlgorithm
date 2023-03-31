@@ -19,13 +19,13 @@ public class EightQueensGA {
    public static final int NUM_SIMS = 1000;
 
    /** the number of parents to reproduce children with */
-   public static final int NUM_PARENTS = 2;
+   public static final int NUM_PARENTS = 5;
 
    /** the number of children to produce each generation */
    public static final int NUM_CHILDREN = 2;
 
    /** the number of gene mutations to perform on each generation's children */
-   public static final int MUTATE_COUNT = 3;
+   public static final int MUTATE_COUNT = 1;
 
    /** the percentage at which the simulation should pause */
    public static final int PAUSE_PERCENT = 10;
