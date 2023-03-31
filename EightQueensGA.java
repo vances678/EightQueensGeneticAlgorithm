@@ -13,13 +13,13 @@ public class EightQueensGA {
    public static final int BOARD_SIZE = 8;
 
    /** the number of chromosomes in each generation */
-   public static final int NUM_CHROMS = 5;
+   public static final int NUM_CHROMS = 20;
 
    /** the number of generations to produce */
-   public static final int NUM_SIMS = 1000;
+   public static final int NUM_SIMS = 10000;
 
    /** the number of parents to reproduce children with */
-   public static final int NUM_PARENTS = 5;
+   public static final int NUM_PARENTS = 3;
 
    /** the number of children to produce each generation */
    public static final int NUM_CHILDREN = 2;
