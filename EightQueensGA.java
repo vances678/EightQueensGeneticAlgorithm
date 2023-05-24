@@ -111,7 +111,7 @@ public class EightQueensGA {
    }
 
    /**
-    * produces children from the selected parents using one-point crossover
+    * produces children from the selected parents using two-point crossover
     * 
     * @param the_chosen   the array of selected parents
     * @param num_children the number of offspring to produce
@@ -246,10 +246,13 @@ public class EightQueensGA {
     * 
     * @param generation the current generation number
     */
-   public void pause(int generation) {
+   public void pause(int generation, double currentTotalFitness, double bestGlobalFitness) {
       System.out.println();
       System.out.println("Population Statistics (gen " + generation
             + " of " + NUM_SIMS + "):");
+      System.out.println("----------------------------------------");
+      System.out.println("current total fitness: " + currentTotalFitness);
+      System.out.println("best global total fitness: " + bestGlobalFitness);
       System.out.println("----------------------------------------");
       for (int i = 0; i < myChroms.length; i++) {
          System.out.println("chrom " + (i + 1) + ": " + myChroms[i]
@@ -267,21 +270,21 @@ public class EightQueensGA {
     * @return the fittest chromosome
     */
    public EightQueensChrom run_ga(int population_size, int number_of_generations) {
-      double bestGlobalFitness = 0;
+      double bestGlobalFitness = Double.MAX_VALUE;
       generate_initial_population(population_size);
 
       for (int generation = 0; generation < number_of_generations; generation++) {
-         if (100 * (double) generation / number_of_generations % PAUSE_PERCENT == 0) {
-            pause(generation);
-         }
-
-         double currentBestFitness = 0;
+         double currentTotalFitness = 0;
          for (EightQueensChrom chrom : myChroms) {
-            currentBestFitness += chrom.getFitness();
+            currentTotalFitness += chrom.getFitness();
          }
 
-         if (currentBestFitness > bestGlobalFitness) {
-            bestGlobalFitness = currentBestFitness;
+         if (currentTotalFitness < bestGlobalFitness) {
+            bestGlobalFitness = currentTotalFitness;
+         }
+
+         if (100 * (double) generation / number_of_generations % PAUSE_PERCENT == 0) {
+            pause(generation, currentTotalFitness, bestGlobalFitness);
          }
 
          EightQueensChrom[] the_chosen = roulette_wheel_selection(NUM_PARENTS);
