@@ -310,13 +310,24 @@ public class EightQueensGA {
       test.run();
    }
 
+   /**
+    * a chromosome representation of the eight queens problem
+    */
    private class EightQueensChrom {
       public int[] genes;
 
+      /**
+       * default constructor for EightQueensChrom
+       */
       public EightQueensChrom() {
          genes = new int[BOARD_SIZE];
       }
 
+      /**
+       * an EightQueensChrom constructor for given gene values
+       * 
+       * @param geneVals the gene values
+       */
       public EightQueensChrom(int[] geneVals) {
          this();
          for (int idx = 0; idx < genes.length; idx++) {
